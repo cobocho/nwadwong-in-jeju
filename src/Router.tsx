@@ -5,7 +5,6 @@ import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import AuthCallback from './pages/Login/AuthCallback';
 import UploadImage from './pages/UploadImage/UploadImage';
-import Return from './pages/Return/Return';
 import MyPage from './pages/MyPage/MyPage';
 import Donataion from './pages/Donataion/Donataion';
 import DonataionInputPage from './pages/Donataion/DonataionInputPage';

@@ -1,10 +1,11 @@
-import styled from 'styled-components';
-import useAxios from '../../hooks/useAxios';
-import { useEffect } from 'react';
-import { useRecoilState, useSetRecoilState } from 'recoil';
-import { commentDataState } from '../../recoil/commentState';
-import { detailState } from '../../recoil/detailState';
-import Comments from './Comments';
+import styled from "styled-components";
+import useAxios from "../../hooks/useAxios";
+import { useEffect } from "react";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { commentDataState } from "../../recoil/commentState";
+import { detailState } from "../../recoil/detailState";
+import Comments from "./Comments";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 
 export interface detailDataType {
   imageUrl: string;
@@ -23,31 +24,37 @@ export interface commentDataType {
 }
 
 export default function StoreDetail() {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
   const [, , , fetchData] = useAxios();
+  const navigate = useNavigate();
   const [detail, setDetail] = useRecoilState(detailState);
   const setCommentData = useSetRecoilState(commentDataState);
+  const params = useParams();
+  const cupStoreId = params.id;
 
   function isOpenNow(hours: string) {
     const now = new Date();
     const currentHour = now.getHours();
-    if (Number(hours.split('~')[0]) < currentHour && currentHour < Number(hours.split('~')[1])) {
-      return '운영중';
+    if (
+      Number(hours.split("~")[0]) < currentHour &&
+      currentHour < Number(hours.split("~")[1])
+    ) {
+      return "운영중";
     } else {
-      return '운영종료';
+      return "운영종료";
     }
   }
 
   function displayTime(hours: string) {
-    return hours.split('~')[0] + ':00' + ' - ' + hours.split('~')[1] + ':00';
+    return hours.split("~")[0] + ":00" + " - " + hours.split("~")[1] + ":00";
   }
 
   useEffect(() => {
     fetchData({
-      url: 'https://goormtone6th.com/detail?cupStoreId=1',
+      url: `/api/detail?cupStoreId=${cupStoreId}`,
       headers: {
         Authorization: token,
-        'Content-Type': `application/json`,
+        "Content-Type": `application/json`,
       },
     }).then((result: detailDataType) => {
       if (result) {
@@ -83,6 +90,9 @@ export default function StoreDetail() {
         </Rating> */}
       </DetailHeader>
       <Comments />
+      <SubmitBtn onClick={() => navigate(`/uploadImage/${cupStoreId}`)}>
+        반납 인증
+      </SubmitBtn>
     </>
   );
 }
@@ -151,18 +161,19 @@ const Hours = styled.p`
   color: #a1a1a1;
 `;
 
-export const DetailData = {
-  imageUrl: 'string',
-  name: 'string',
-  roadAddress: 'string',
-  hours: 'string',
-  averageRating: 0,
-  comments: [
-    {
-      commentNickname: 'string',
-      createdAt: '2023-07-06T14:32:00.912Z',
-      content: 'string',
-    },
-  ],
-  totalComments: 0,
-};
+const SubmitBtn = styled.button`
+  width: 166px;
+  height: 50px;
+  border: none;
+  border-radius: 8px;
+  background-color: #b4f3a8;
+  box-shadow: 0px 0px 13px -4px rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 620px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
