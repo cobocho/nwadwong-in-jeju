@@ -230,6 +230,7 @@ const Container = styled.div`
     background-color: #f86363;
     border: 2px solid #fff;
     border-radius: 50%;
+    box-shadow: 0px 0px 21px 1px rgba(133, 68, 68, 0.68);
   }
 
   .custom-overlay {
