@@ -18,17 +18,6 @@ const Donataion = () => {
     getAcc();
   }, []);
 
-  // async function postDonation() {
-  //   await fetch('/api/donation', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       Authorization: localStorage.getItem('token')!,
-  //     },
-  //     body: JSON.stringify(),
-  //   });
-  // }
-
   return (
     <Container>
       <h1>지금 바로, 수눌음</h1>
@@ -118,7 +107,7 @@ const Container = styled.div`
     .liquor {
       position: absolute;
       right: 0;
-      bottom: 0;
+      bottom: 10px;
       width: 300px;
       height: 150px;
       background-color: #b4f3a8;
@@ -165,7 +154,7 @@ const Container = styled.div`
       height: 150px;
     }
     100% {
-      height: calc(150px + ((220px / 100) * 80));
+      height: calc(140px + ((220px / 100) * 80));
     }
   }
 

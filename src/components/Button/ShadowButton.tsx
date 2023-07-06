@@ -11,6 +11,7 @@ const ShadowButton = ({ onClick, children }: Props) => {
 };
 
 const Container = styled.button`
+  width: fit-content;
   padding: 14px 24px;
   font-size: 14px;
   background-color: #e7f6e5;

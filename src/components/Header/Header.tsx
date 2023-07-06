@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 export default function Header() {
   const { pathname } = useLocation();
 
-  if (['/login', '/mypage', '/donation'].includes(pathname)) {
+  if (['/login', '/mypage', '/donation', '/donation-input'].includes(pathname)) {
     return <></>;
   }
 
