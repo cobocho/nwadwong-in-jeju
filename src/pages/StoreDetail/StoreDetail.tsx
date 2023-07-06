@@ -1,12 +1,10 @@
-import styled from "styled-components";
-import { AiTwotoneStar } from "react-icons/ai";
-import useAxios from "../../hooks/useAxios";
-import { useEffect, useState } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
-import { commentDataState } from "../../recoil/commentState";
-import { detailState } from "../../recoil/detailState";
-import Comments from "./Comments";
-import { useParams } from "react-router-dom";
+import styled from 'styled-components';
+import useAxios from '../../hooks/useAxios';
+import { useEffect } from 'react';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { commentDataState } from '../../recoil/commentState';
+import { detailState } from '../../recoil/detailState';
+import Comments from './Comments';
 
 export interface detailDataType {
   imageUrl: string;
@@ -25,37 +23,31 @@ export interface commentDataType {
 }
 
 export default function StoreDetail() {
-  const token = localStorage.getItem("token");
-  const [loading, error, data, fetchData] = useAxios();
+  const token = localStorage.getItem('token');
+  const [fetchData] = useAxios();
   const [detail, setDetail] = useRecoilState(detailState);
   const setCommentData = useSetRecoilState(commentDataState);
-  const [storeOpen, setStoreOpen] = useState(false);
-  const params = useParams();
-  const cupStoreId = params.id;
 
   function isOpenNow(hours: string) {
     const now = new Date();
     const currentHour = now.getHours();
-    if (
-      Number(hours.split("~")[0]) < currentHour &&
-      currentHour < Number(hours.split("~")[1])
-    ) {
-      return "운영중";
+    if (Number(hours.split('~')[0]) < currentHour && currentHour < Number(hours.split('~')[1])) {
+      return '운영중';
     } else {
-      return "운영종료";
+      return '운영종료';
     }
   }
 
   function displayTime(hours: string) {
-    return hours.split("~")[0] + ":00" + " - " + hours.split("~")[1] + ":00";
+    return hours.split('~')[0] + ':00' + ' - ' + hours.split('~')[1] + ':00';
   }
 
   useEffect(() => {
     fetchData({
-      url: "https://goormtone6th.com/detail?cupStoreId=1",
+      url: 'https://goormtone6th.com/detail?cupStoreId=1',
       headers: {
         Authorization: token,
-        "Content-Type": `application/json`,
+        'Content-Type': `application/json`,
       },
     }).then((result: detailDataType) => {
       if (result) {
@@ -158,35 +150,17 @@ const Hours = styled.p`
   color: #a1a1a1;
 `;
 
-const Rating = styled.p`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-`;
-
-const Star = styled(AiTwotoneStar)`
-  color: #96b490;
-  font-size: 20px;
-`;
-
-const RatingAverage = styled.p`
-  color: #525463;
-  font-size: 18px;
-  line-height: 27px;
-  font-weight: bold;
-`;
-
 export const DetailData = {
-  imageUrl: "string",
-  name: "string",
-  roadAddress: "string",
-  hours: "string",
+  imageUrl: 'string',
+  name: 'string',
+  roadAddress: 'string',
+  hours: 'string',
   averageRating: 0,
   comments: [
     {
-      commentNickname: "string",
-      createdAt: "2023-07-06T14:32:00.912Z",
-      content: "string",
+      commentNickname: 'string',
+      createdAt: '2023-07-06T14:32:00.912Z',
+      content: 'string',
     },
   ],
   totalComments: 0,

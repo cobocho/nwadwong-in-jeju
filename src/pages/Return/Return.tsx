@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
 
@@ -16,7 +16,7 @@ const Return = () => {
           onChange={(e) => {
             const reader = new FileReader();
             reader.readAsDataURL(e.target.files![0]);
-            reader.onload = async (e) => {
+            reader.onload = async () => {
               const req = await fetch('/api/upload-image', {
                 method: 'POST',
                 headers: {

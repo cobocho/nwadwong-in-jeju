@@ -1,14 +1,10 @@
-import styled from "styled-components";
-import { BiSolidUser } from "react-icons/bi";
-import { useRef } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
-import useAxios from "../../../hooks/useAxios";
-import {
-  blogInputState,
-  commentDataState,
-  refState,
-} from "../../../recoil/commentState";
-import { useParams } from "react-router-dom";
+import styled from 'styled-components';
+import { BiSolidUser } from 'react-icons/bi';
+import { useRef } from 'react';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import useAxios from '../../../hooks/useAxios';
+import { blogInputState, commentDataState, refState } from '../../../recoil/commentState';
+import { useParams } from 'react-router-dom';
 
 interface newCommenttype {
   cupStoreName: string;
@@ -18,11 +14,11 @@ interface newCommenttype {
 }
 
 export default function CommentInput() {
-  const [loading, error, data, fetchData] = useAxios();
+  const [, , , fetchData] = useAxios();
   const params = useParams();
   const cupStoreId = params.id;
 
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem('token');
 
   const inputRef = useRef<HTMLTextAreaElement | null>(null);
   const setInputState = useSetRecoilState(refState);
@@ -36,15 +32,15 @@ export default function CommentInput() {
 
   const clickHandler = () => {
     fetchData({
-      url: "/api/comment",
-      method: "POST",
+      url: '/api/comment',
+      method: 'POST',
       headers: {
         authorization: token,
-        "Content-Type": `application/json`,
+        'Content-Type': `application/json`,
       },
       data: { cupStoreId: cupStoreId, content: content },
     }).then((el: newCommenttype) => {
-      setContent("");
+      setContent('');
       if (el) {
         setCommentData((prevData) => [
           ...prevData,
