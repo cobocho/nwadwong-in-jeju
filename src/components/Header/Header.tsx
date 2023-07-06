@@ -1,11 +1,15 @@
-import styled from "styled-components";
+import styled from 'styled-components';
+import MapHeader from './MapHeader';
 
 export default function Header() {
-  return <HeaderContainer>Header</HeaderContainer>;
+  return (
+    <HeaderContainer>
+      <MapHeader />
+    </HeaderContainer>
+  );
 }
 
 const HeaderContainer = styled.div`
   width: 100%;
-  height: 10%;
-  border: 1px solid black;
+  height: fit-content;
 `;
