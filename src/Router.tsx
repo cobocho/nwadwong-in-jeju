@@ -8,6 +8,8 @@ import UploadImage from './pages/UploadImage/UploadImage';
 import StoreDetail from './pages/StoreDetail/StoreDetail';
 import Return from './pages/Return/Return';
 import MyPage from './pages/MyPage/MyPage';
+import Donataion from './pages/Donataion/Donataion';
+import DonataionInputPage from './pages/Donataion/DonataionInputPage';
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +25,8 @@ export const router = createBrowserRouter([
       { path: '/detail', element: <StoreDetail /> },
       { path: '/uploadImage', element: <UploadImage /> },
       { path: '/mypage', element: <MyPage /> },
+      { path: '/donation', element: <Donataion /> },
+      { path: '/donation-input', element: <DonataionInputPage /> },
     ],
   },
 ]);
