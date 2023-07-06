@@ -1,10 +1,13 @@
 import { useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
+import userState from '../../recoil/userState';
 const { VITE_APP_KEY, VITE_REDIRECT_URI } = import.meta.env;
 
 const AuthCallback = () => {
   const params = new URL(document.location.toString()).searchParams;
   const CODE = params.get('code');
   const navigation = useNavigate();
+  const setUserState = useSetRecoilState(userState);
 
   async function getToken() {
     const CLIENT_ID = VITE_APP_KEY;
@@ -16,6 +19,7 @@ const AuthCallback = () => {
       }
     );
     const { access_token } = await res.json();
+    console.log(access_token);
 
     if (access_token) {
       const res = await fetch(`https://kapi.kakao.com/v2/user/me`, {
@@ -39,7 +43,9 @@ const AuthCallback = () => {
         })
       ).json();
 
-      const data = await (
+      localStorage.setItem('token', token);
+
+      const userData = await (
         await fetch(`/api/oauth-test`, {
           method: 'GET',
           headers: {
@@ -48,17 +54,14 @@ const AuthCallback = () => {
           },
         })
       ).json();
-
-      navigation('/login');
-    } else {
-      alert('유효하지 않은 카카오 ID 입니다!');
-      navigation('/login');
+      navigation('/home');
+      setUserState(userData);
     }
   }
 
   getToken();
 
-  return <></>;
+  return <div>로그인 중...</div>;
 };
 
 export default AuthCallback;
