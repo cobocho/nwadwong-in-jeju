@@ -97,6 +97,10 @@ const Container = styled.div`
       border-radius: 8px;
       background-color: #b4f3a8;
       font-size: 16px;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 `;
