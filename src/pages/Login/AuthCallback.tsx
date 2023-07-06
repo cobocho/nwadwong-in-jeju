@@ -1,10 +1,13 @@
 import { useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
+import userState from '../../recoil/userState';
 const { VITE_APP_KEY, VITE_REDIRECT_URI } = import.meta.env;
 
 const AuthCallback = () => {
   const params = new URL(document.location.toString()).searchParams;
   const CODE = params.get('code');
   const navigation = useNavigate();
+  const setNamesState = useSetRecoilState(userState);
 
   async function getToken() {
     const CLIENT_ID = VITE_APP_KEY;
@@ -39,7 +42,7 @@ const AuthCallback = () => {
         })
       ).json();
 
-      const data = await (
+      const userData = await (
         await fetch(`/api/oauth-test`, {
           method: 'GET',
           headers: {
@@ -48,8 +51,9 @@ const AuthCallback = () => {
           },
         })
       ).json();
+      setNamesState(userData);
 
-      navigation('/login');
+      navigation('/home');
     } else {
       alert('유효하지 않은 카카오 ID 입니다!');
       navigation('/login');
