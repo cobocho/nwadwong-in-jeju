@@ -1,11 +1,12 @@
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue } from "recoil";
 
-import styled from 'styled-components';
-import { GrClose } from 'react-icons/gr';
-import { commentDataState } from '../../../recoil/commentState';
+import styled from "styled-components";
+import { HiOutlineDotsHorizontal } from "react-icons/hi";
+import { commentDataState } from "../../../recoil/commentState";
 
 export function displayCreatedAt(created_at: string) {
-  const milliSeconds: number = new Date().getTime() - new Date(created_at).getTime();
+  const milliSeconds: number =
+    new Date().getTime() - new Date(created_at).getTime();
   const seconds = milliSeconds / 1000;
   if (seconds < 60) return `방금 전`;
   const minutes = seconds / 60;
@@ -16,8 +17,9 @@ export function displayCreatedAt(created_at: string) {
   } else {
     return (
       <span>
-        {created_at.split('T')[0]}&nbsp;&nbsp;
-        {created_at.split('T')[1].split(':')[0]}:{created_at.split('T')[1].split(':')[1]}
+        {created_at.split("T")[0]}&nbsp;&nbsp;
+        {created_at.split("T")[1].split(":")[0]}:
+        {created_at.split("T")[1].split(":")[1]}
       </span>
     );
   }
@@ -34,7 +36,9 @@ export default function CommentList() {
               <CommentLeft>
                 <CommentUser>{item.commentNickname}</CommentUser>
                 <DivideDot>·</DivideDot>
-                <CreatedAt>{item.createdAt && displayCreatedAt(item.createdAt)}</CreatedAt>
+                <CreatedAt>
+                  {item.createdAt && displayCreatedAt(item.createdAt)}
+                </CreatedAt>
               </CommentLeft>
               <CommentRight>
                 <Delete />
@@ -81,7 +85,7 @@ const CreatedAt = styled.div`
   color: gray;
 `;
 
-const Delete = styled(GrClose)`
+const Delete = styled(HiOutlineDotsHorizontal)`
   width: 15px;
   height: 15px;
 `;
