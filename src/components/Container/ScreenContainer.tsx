@@ -6,6 +6,8 @@ export default function ScreenContainer({ children }: { children: ReactNode }) {
 }
 
 const ContainerBox = styled.div`
+  display: flex;
+  flex-direction: column;
   min-width: 360px;
   max-width: 414px;
   height: 100vh;
