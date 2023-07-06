@@ -1,11 +1,11 @@
-import styled from 'styled-components';
-import MapHeader from './MapHeader';
-import { useLocation } from 'react-router-dom';
+import styled from "styled-components";
+import MapHeader from "./MapHeader";
+import { useLocation } from "react-router-dom";
 
 export default function Header() {
   const { pathname } = useLocation();
 
-  if (['/login'].includes(pathname)) {
+  if (["/login"].includes(pathname)) {
     return <></>;
   }
 
