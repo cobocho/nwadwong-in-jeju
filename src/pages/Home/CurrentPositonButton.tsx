@@ -1,7 +1,6 @@
 import { styled } from 'styled-components';
 import { Coord } from './Home';
-import useGeolocation from './useGeolocation';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 interface Props {
   setCurrentLocation: React.Dispatch<React.SetStateAction<Coord>>;
