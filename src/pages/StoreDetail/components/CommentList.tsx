@@ -27,9 +27,11 @@ export function displayCreatedAt(created_at: string) {
 
 export default function CommentList() {
   const commentData = useRecoilValue(commentDataState);
+  const reversedCommentData = [...commentData].reverse();
+
   return (
     <div>
-      {commentData?.map((item, idx) => {
+      {reversedCommentData?.map((item, idx) => {
         return (
           <CommentBox key={idx}>
             <CommentHeader>
