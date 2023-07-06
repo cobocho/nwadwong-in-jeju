@@ -28,9 +28,6 @@ export default function UploadImage() {
   const params = useParams();
   const cupStoreId = params.id;
 
-  let dataType;
-  let base64result;
-
   const [fileBase64, setFileBase64] = useState("");
 
   const onUpload = (e: ChangeEvent<HTMLInputElement>) => {
@@ -48,11 +45,8 @@ export default function UploadImage() {
         setImagePreview(reader.result ? roughResult : "");
 
         if (roughResult) {
-          dataType = roughResult.split(";base64,")[0];
-          base64result = roughResult.split(",")[1];
+          const base64result = roughResult.split(",")[1];
           setFileBase64(base64result);
-          console.log("rough", roughResult);
-          console.log("base64", base64result);
         }
 
         resolve();
@@ -67,14 +61,19 @@ export default function UploadImage() {
       headers: {
         Authorization: token,
       },
-      data: { file: fileBase64, cupStoreId: cupStoreId },
+      data: { file: null, cupStoreId: cupStoreId },
     }).then((result: UserPointDataType) => {
       if (result) {
         setUserPointData(result);
         setIsSuccess(true);
+        setTimeout(() => {
+          setIsSuccess(false);
+        }, 2000);
       }
     });
   };
+
+  console.log(error);
 
   return (
     <UploadContainer>
