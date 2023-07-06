@@ -1,24 +1,85 @@
 import styled from "styled-components";
 import { AiTwotoneStar } from "react-icons/ai";
+import useAxios from "../../hooks/useAxios";
+import { useEffect, useState } from "react";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { commentDataState } from "../../recoil/commentState";
+import { detailState } from "../../recoil/detailState";
+import Comments from "./Comments";
+import { useParams } from "react-router-dom";
+
+export interface detailDataType {
+  imageUrl: string;
+  name: string;
+  roadAddress: string;
+  hours: string;
+  averageRating: number;
+  comments: commentDataType[];
+  totalComments: number;
+}
+
+export interface commentDataType {
+  commentNickname: string;
+  createdAt: string;
+  content: string;
+}
 
 export default function StoreDetail() {
+  const token = localStorage.getItem("token");
+  const [loading, error, data, fetchData] = useAxios();
+  const [detail, setDetail] = useRecoilState(detailState);
+  const setCommentData = useSetRecoilState(commentDataState);
+  const [storeOpen, setStoreOpen] = useState(false);
+  const params = useParams();
+  const cupStoreId = params.id;
+
+  function isOpenNow(hours: string) {
+    const now = new Date();
+    const currentHour = now.getHours();
+    if (
+      Number(hours.split("~")[0]) < currentHour &&
+      currentHour < Number(hours.split("~")[1])
+    ) {
+      return "운영중";
+    } else {
+      return "운영종료";
+    }
+  }
+
+  function displayTime(hours: string) {
+    return hours.split("~")[0] + ":00" + " - " + hours.split("~")[1] + ":00";
+  }
+
+  useEffect(() => {
+    fetchData({
+      url: "https://goormtone6th.com/detail?cupStoreId=1",
+      headers: {
+        Authorization: token,
+        "Content-Type": `application/json`,
+      },
+    }).then((result: detailDataType) => {
+      if (result) {
+        setDetail(result);
+        setCommentData(result.comments);
+      }
+    });
+  }, []);
+
   return (
     <>
       <ThumbnailBox>
-        <ThumbnailImage src="/images/storeDetail/test1.png"></ThumbnailImage>
+        <ThumbnailImage src={detail?.imageUrl}></ThumbnailImage>
       </ThumbnailBox>
       <DetailHeader>
         <StoreInfo>
-          <StoreName>더벤티 고성교차로점</StoreName>
-          <StoreAddress>
-            제주 서귀포시 성산읍 일출로 4(성산읍 고성리)
-          </StoreAddress>
+          <StoreName>{detail?.name}</StoreName>
+          <StoreAddress>{detail?.roadAddress}</StoreAddress>
           <StoreHours>
-            <IsOpen>운영중</IsOpen>
-            <Hours>운영시간 07:30-20:30</Hours>
+            <IsOpen>{detail?.hours && isOpenNow(detail.hours)}</IsOpen>
+            <Hours>운영시간 {detail?.hours && displayTime(detail.hours)}</Hours>
           </StoreHours>
         </StoreInfo>
-        <Rating>
+        {/* <Rating>
           <div>
             <Star />
             <Star />
@@ -26,9 +87,10 @@ export default function StoreDetail() {
             <Star />
             <Star />
           </div>
-          <RatingAverage>4.0점</RatingAverage>
-        </Rating>
+          <RatingAverage>{detail?.averageRating}점</RatingAverage>
+        </Rating> */}
       </DetailHeader>
+      <Comments />
     </>
   );
 }
@@ -71,13 +133,14 @@ const StoreAddress = styled.p`
 `;
 
 const StoreHours = styled.div`
+  padding: 5px 0;
   display: flex;
   align-items: center;
   gap: 8px;
 `;
 
 const IsOpen = styled.div`
-  width: 48px;
+  padding: 0 8px;
   height: 24px;
   border: 1px solid #e1e1e8;
   background-color: #fbfbfc;
@@ -92,6 +155,7 @@ const IsOpen = styled.div`
 const Hours = styled.p`
   font-size: 12px;
   line-height: 18px;
+  color: #a1a1a1;
 `;
 
 const Rating = styled.p`
@@ -111,3 +175,19 @@ const RatingAverage = styled.p`
   line-height: 27px;
   font-weight: bold;
 `;
+
+export const DetailData = {
+  imageUrl: "string",
+  name: "string",
+  roadAddress: "string",
+  hours: "string",
+  averageRating: 0,
+  comments: [
+    {
+      commentNickname: "string",
+      createdAt: "2023-07-06T14:32:00.912Z",
+      content: "string",
+    },
+  ],
+  totalComments: 0,
+};

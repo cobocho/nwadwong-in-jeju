@@ -1,16 +1,20 @@
-import { ReactNode, useEffect } from 'react';
-import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
-import { checkValidToken } from '../../api/authApi';
+import { ReactNode, useEffect } from "react";
+import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import { checkValidToken } from "../../api/authApi";
 
-export default function ContentContainer({ children }: { children: ReactNode }) {
+export default function ContentContainer({
+  children,
+}: {
+  children: ReactNode;
+}) {
   const navigate = useNavigate();
 
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     if (!token) {
-      navigate('/login');
+      navigate("/login");
     } else {
       checkValidToken();
     }
@@ -25,6 +29,10 @@ const ContentBox = styled.div`
   max-width: 414px;
   width: 100%;
   height: 80vh;
+  overflow: scroll;
   margin: 0 auto;
   padding: 0 20px;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
