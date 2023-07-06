@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import KakaoLoginButton from './KakaoLoginButton';
+import KakaoLoginButton from './loginWithKakao';
 import SmileLogo from './SmileLogo';
 
 export default function Login() {

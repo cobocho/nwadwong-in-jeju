@@ -7,7 +7,7 @@ const AuthCallback = () => {
   const params = new URL(document.location.toString()).searchParams;
   const CODE = params.get('code');
   const navigation = useNavigate();
-  const setNamesState = useSetRecoilState(userState);
+  const setUserState = useSetRecoilState(userState);
 
   async function getToken() {
     const CLIENT_ID = VITE_APP_KEY;
@@ -19,6 +19,7 @@ const AuthCallback = () => {
       }
     );
     const { access_token } = await res.json();
+    console.log(access_token);
 
     if (access_token) {
       const res = await fetch(`https://kapi.kakao.com/v2/user/me`, {
@@ -42,6 +43,8 @@ const AuthCallback = () => {
         })
       ).json();
 
+      localStorage.setItem('token', token);
+
       const userData = await (
         await fetch(`/api/oauth-test`, {
           method: 'GET',
@@ -51,18 +54,14 @@ const AuthCallback = () => {
           },
         })
       ).json();
-      setNamesState(userData);
-
       navigation('/home');
-    } else {
-      alert('유효하지 않은 카카오 ID 입니다!');
-      navigation('/login');
+      setUserState(userData);
     }
   }
 
   getToken();
 
-  return <></>;
+  return <div>로그인 중...</div>;
 };
 
 export default AuthCallback;
