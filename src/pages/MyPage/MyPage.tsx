@@ -1,7 +1,6 @@
 import { useRecoilValue } from 'recoil';
 import { styled } from 'styled-components';
 import userState from '../../recoil/userState';
-import { User } from '../../types/user';
 
 const MyPage = () => {
   const user = useRecoilValue(userState);

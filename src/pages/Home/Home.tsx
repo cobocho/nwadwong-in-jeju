@@ -199,7 +199,7 @@ export default function Home() {
           top: '131px',
           width: '100vw',
           maxWidth: '414px',
-          height: 'calc(100vh - 131px - 60px)',
+          height: 'calc(100vh - 131px - 68px)',
           margin: '0 auto',
         }}
       />
