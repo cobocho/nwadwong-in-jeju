@@ -8,8 +8,10 @@ const GlobalStyles = createGlobalStyle`
         box-sizing: border-box;
     }
 
+
     body {
         background-color: white;
+        font-family: 'Pretendard', sans-serif
     }
 
     ol, ul {

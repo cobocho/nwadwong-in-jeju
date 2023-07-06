@@ -18,5 +18,9 @@ export default function Header() {
 
 const HeaderContainer = styled.div`
   width: 100%;
+<<<<<<< HEAD
   height: fit-content;
+=======
+  height: 10%;
+>>>>>>> feature-StoreDetail
 `;
