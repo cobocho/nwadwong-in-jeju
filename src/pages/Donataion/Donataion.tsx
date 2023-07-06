@@ -19,7 +19,7 @@ const Donataion = () => {
   }, []);
 
   return (
-    <Container>
+    <Container accPrice={accPrice ? accPrice : 0}>
       <h1>지금 바로, 수눌음</h1>
       <div className="cup">
         <div className="badge">제주도청 주관 기부 캠페인</div>
@@ -45,7 +45,7 @@ const Donataion = () => {
   );
 };
 
-const Container = styled.div`
+const Container = styled.div<{ accPrice: number }>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -154,7 +154,7 @@ const Container = styled.div`
       height: 150px;
     }
     100% {
-      height: calc(140px + ((220px / 100) * 80));
+      height: calc(140px + ((220px / 100) * ${(props) => props.accPrice / TARGET_POINT}));
     }
   }
 
@@ -165,7 +165,7 @@ const Container = styled.div`
     }
     100% {
       opacity: 1;
-      bottom: calc(145px + ((220px / 100) * 80));
+      bottom: calc(145px + ((220px / 100) * ${(props) => props.accPrice / TARGET_POINT}));
     }
   }
 
