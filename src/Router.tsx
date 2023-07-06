@@ -4,6 +4,7 @@ import NotFound from './pages/NotFound/NotFound';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import AuthCallback from './pages/Login/AuthCallback';
+import StoreDetail from './pages/StoreDetail/StoreDetail';
 
 export const router = createBrowserRouter([
   {
@@ -14,6 +15,7 @@ export const router = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: '/login', element: <Login /> },
       { path: '/login/auth', element: <AuthCallback /> },
+      { path: '/detail', element: <StoreDetail />}
     ],
   },
 ]);
