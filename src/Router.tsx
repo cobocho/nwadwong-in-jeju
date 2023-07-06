@@ -11,7 +11,8 @@ export const router = createBrowserRouter([
     element: <App />,
     errorElement: <NotFound />,
     children: [
-      { index: true, element: <Home /> },
+      { index: true, element: <></> },
+      { path: '/home', element: <Home /> },
       { path: '/login', element: <Login /> },
       { path: '/login/auth', element: <AuthCallback /> },
     ],
