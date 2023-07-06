@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 import { Coord } from './Home';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import useGeolocation from './useGeolocation';
 
 interface Props {
