@@ -14,6 +14,5 @@ const ContentBox = styled.div`
   max-width: 414px;
   width: 100%;
   height: 80vh;
-  border: 1px solid black;
   margin: 0 auto;
 `;
