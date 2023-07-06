@@ -28,7 +28,7 @@ const CupStoreItem = ({ cupStore }: Props) => {
               navigate(`/return/${cupStore.cupStoreId}`);
             }}
           >
-            반납하기
+            반납 인증
           </button>
         </div>
       </Container>
@@ -86,6 +86,7 @@ const Container = styled.div`
       border: none;
       border-radius: 8px;
       background-color: #b4f3a8;
+      font-size: 16px;
     }
   }
 `;
