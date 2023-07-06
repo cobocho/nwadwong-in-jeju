@@ -4,7 +4,6 @@ import CurrentPositonButton from './CurrentPositonButton';
 import { styled } from 'styled-components';
 import { getDistance } from './getDistance';
 import { useGetCupStoreByCoord } from '../../api/cupStoreApi';
-import { useQueryClient } from '@tanstack/react-query';
 import FindCurrentPositon from './FindCurrentPositon';
 import { CupStore } from '../../types/CupStore';
 import CupStoreItem from './CupStoreItem';
@@ -50,7 +49,7 @@ export default function Home() {
     lat: 37.5783209050878,
     lng: 126.894689433213,
   });
-  const [currentLocation, setCurrentLocation] = useState<Coord>({
+  const [, setCurrentLocation] = useState<Coord>({
     lat: 37.5783209050878,
     lng: 126.894689433213,
   });
@@ -151,15 +150,21 @@ export default function Home() {
       if (selectedId === cupStore.cupStoreId) content.classList.add('selected');
       content.id = '' + cupStore.cupStoreId;
       content.innerHTML = ` 
-        <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <g clip-path="url(#clip0_5_22837)">
-          <path d="M25 4.16663C16.9375 4.16663 10.4167 10.6875 10.4167 18.75C10.4167 27.4375 19.625 39.4166 23.4167 43.9791C24.25 44.9791 25.7708 44.9791 26.6042 43.9791C30.375 39.4166 39.5833 27.4375 39.5833 18.75C39.5833 10.6875 33.0625 4.16663 25 4.16663ZM25 23.9583C22.125 23.9583 19.7917 21.625 19.7917 18.75C19.7917 15.875 22.125 13.5416 25 13.5416C27.875 13.5416 30.2083 15.875 30.2083 18.75C30.2083 21.625 27.875 23.9583 25 23.9583Z" fill="#36BF9F"/>
-          <circle cx="25" cy="19" r="11" fill="white"/>
+        <svg width="40" height="43" viewBox="0 0 40 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g filter="url(#filter0_d_226_13498)">
+          <path d="M16.2916 16.6666C16.2916 18.707 17.9595 20.3749 19.9999 20.3749C22.0403 20.3749 23.7082 18.707 23.7082 16.6666C23.7082 14.6261 22.0403 12.9583 19.9999 12.9583C17.9595 12.9583 16.2916 14.6261 16.2916 16.6666ZM7.04156 16.9999C7.04156 8.9185 13.1953 3.70825 19.9999 3.70825C26.8045 3.70825 32.9582 8.9185 32.9582 16.9999C32.9582 19.6655 31.8857 22.6133 29.6875 25.854C27.5305 29.0338 24.3049 32.473 19.9999 36.1728C15.6949 32.473 12.4693 29.0338 10.3123 25.854C8.11408 22.6133 7.04156 19.6655 7.04156 16.9999Z" fill="#B4F3A8" stroke="black" stroke-width="0.75"/>
           </g>
           <defs>
-          <clipPath id="clip0_5_22837">
-          <rect width="50" height="50" fill="white"/>
-          </clipPath>
+          <filter id="filter0_d_226_13498" x="-2" y="-2" width="48" height="48" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+          <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+          <feOffset dx="2" dy="2"/>
+          <feGaussianBlur stdDeviation="2"/>
+          <feComposite in2="hardAlpha" operator="out"/>
+          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_226_13498"/>
+          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_226_13498" result="shape"/>
+          </filter>
           </defs>
         </svg>
       `;
@@ -188,7 +193,15 @@ export default function Home() {
     <Container>
       <div
         id="map"
-        style={{ width: '100%', height: '100%' }}
+        style={{
+          position: 'fixed',
+          left: 0,
+          top: '131px',
+          width: '100vw',
+          maxWidth: '414px',
+          height: 'calc(100vh - 131px - 60px)',
+          margin: '0 auto',
+        }}
       />
       {visibleFindButton && (
         <FindCurrentPositon
@@ -217,6 +230,7 @@ const Container = styled.div`
     background-color: #f86363;
     border: 2px solid #fff;
     border-radius: 50%;
+    box-shadow: 0px 0px 21px 1px rgba(133, 68, 68, 0.68);
   }
 
   .custom-overlay {

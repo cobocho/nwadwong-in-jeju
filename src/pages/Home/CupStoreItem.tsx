@@ -41,9 +41,9 @@ const Container = styled.div`
   gap: 20px;
   position: absolute;
   bottom: 20px;
+  left: 0;
   width: 335px;
   height: 150px;
-  margin: 0 calc((100vw - 335px) / 2);
   padding: 15px;
   background-color: #fff;
   border-radius: 8px;
