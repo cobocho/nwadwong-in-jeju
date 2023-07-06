@@ -2,17 +2,25 @@ import { ReactNode, useEffect } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { checkValidToken } from '../../api/authApi';
+import { useSetRecoilState } from 'recoil';
+import userState from '../../recoil/userState';
 
 export default function ContentContainer({ children }: { children: ReactNode }) {
   const navigate = useNavigate();
+  const setUserState = useSetRecoilState(userState);
 
   const token = localStorage.getItem('token');
+
+  async function getUserData() {
+    const user = await checkValidToken();
+    setUserState(user);
+  }
 
   useEffect(() => {
     if (!token) {
       navigate('/login');
     } else {
-      checkValidToken();
+      getUserData();
     }
   }, [token]);
 

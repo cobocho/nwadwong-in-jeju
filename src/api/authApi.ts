@@ -8,8 +8,8 @@ export async function checkValidToken() {
         Authorization: token!,
       },
     });
-    await result.json();
-    return true;
+    const user = await result.json();
+    return user;
   } catch (err) {
     alert('유효하지 않은 카카오 계정입니다!');
     localStorage.removeItem('token');

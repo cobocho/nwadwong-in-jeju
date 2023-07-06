@@ -7,6 +7,7 @@ import AuthCallback from './pages/Login/AuthCallback';
 import UploadImage from './pages/UploadImage/UploadImage';
 import StoreDetail from './pages/StoreDetail/StoreDetail';
 import Return from './pages/Return/Return';
+import MyPage from './pages/MyPage/MyPage';
 
 export const router = createBrowserRouter([
   {
@@ -21,6 +22,7 @@ export const router = createBrowserRouter([
       { path: '/login/auth', element: <AuthCallback /> },
       { path: '/detail', element: <StoreDetail /> },
       { path: '/uploadImage', element: <UploadImage /> },
+      { path: '/mypage', element: <MyPage /> },
     ],
   },
 ]);
