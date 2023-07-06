@@ -8,6 +8,12 @@ interface Props {
 
 const CupStoreItem = ({ cupStore }: Props) => {
   const navigate = useNavigate();
+  const today = new Date();
+  const hours = today.getHours();
+
+  const [start, end] = cupStore.hours.split('~');
+
+  const isOpen = +start < hours && +end > hours;
 
   return (
     <Link to={`/detail/${cupStore.cupStoreId}`}>
@@ -19,7 +25,7 @@ const CupStoreItem = ({ cupStore }: Props) => {
         <div className="cupstore-info">
           <h3 className="cupstore-name">{cupStore.name}</h3>
           <div className="cupstore-row">
-            <div className="is-open-badge">운영중</div>
+            <div className="is-open-badge">{isOpen ? '운영중' : '운영종료'}</div>
           </div>
           <button
             className="return-btn"
@@ -41,7 +47,7 @@ const Container = styled.div`
   gap: 20px;
   position: absolute;
   bottom: 20px;
-  left: 0;
+  margin: 0 calc((100% - 335px) / 4);
   width: 335px;
   height: 150px;
   padding: 15px;
@@ -64,6 +70,10 @@ const Container = styled.div`
     padding: 10px 0;
 
     .cupstore-name {
+      width: 160px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
       font-size: 18px;
       font-weight: 700;
     }

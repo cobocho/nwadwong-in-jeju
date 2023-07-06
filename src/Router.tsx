@@ -4,7 +4,6 @@ import NotFound from './pages/NotFound/NotFound';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import AuthCallback from './pages/Login/AuthCallback';
-import StoreDetail from './pages/StoreDetail/StoreDetail';
 import UploadImage from './pages/UploadImage/UploadImage';
 import StoreDetail from './pages/StoreDetail/StoreDetail';
 import Return from './pages/Return/Return';
@@ -23,7 +22,7 @@ export const router = createBrowserRouter([
       { path: '/login', element: <Login /> },
       { path: '/return/:id', element: <Return /> },
       { path: '/login/auth', element: <AuthCallback /> },
-      { path: '/detail/:id', element: <StoreDetail />},
+      { path: '/detail/:id', element: <StoreDetail /> },
       { path: '/uploadImage', element: <UploadImage /> },
       { path: '/mypage', element: <MyPage /> },
       { path: '/donation', element: <Donataion /> },

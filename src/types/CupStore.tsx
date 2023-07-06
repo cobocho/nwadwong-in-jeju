@@ -6,4 +6,5 @@ export interface CupStore {
   lng: number;
   lat: number;
   hours: string;
+  groupName: string;
 }
