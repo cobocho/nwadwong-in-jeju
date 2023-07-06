@@ -17,9 +17,9 @@ export const router = createBrowserRouter([
       { path: '/home', element: <Home /> },
       { path: '/login', element: <Login /> },
       { path: '/login/auth', element: <AuthCallback /> },
-      { path: '/detail', element: <StoreDetail />}
+      { path: '/detail', element: <StoreDetail />},
       { path: '/uploadImage', element: <UploadImage /> },
-    ],
+    ]
   },
 ]);
 
