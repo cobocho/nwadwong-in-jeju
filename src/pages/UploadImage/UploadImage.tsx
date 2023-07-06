@@ -1,13 +1,34 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import styled from "styled-components";
+import useAxios from "../../hooks/useAxios";
+import { useParams } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+import { userPointState } from "../../recoil/userPointState";
+import { uploadSuccessState } from "../../recoil/uploadSuccessState";
 
 interface ImageInputProps {
   src?: string;
   imagePreview?: string | null;
 }
 
+export interface UserPointDataType {
+  cupStoreName: string;
+  memberNickname: string;
+  memberAccumulatedPoint: number;
+  memberPoint: number;
+  gainPoint: number;
+}
+
 export default function UploadImage() {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [loading, error, data, fetchData] = useAxios();
+  const setUserPointData = useSetRecoilState(userPointState);
+  const setIsSuccess = useSetRecoilState(uploadSuccessState);
+  const token = localStorage.getItem("token");
+  const params = useParams();
+  const cupStoreId = params.id;
+
+  const [fileBase64, setFileBase64] = useState("");
 
   const onUpload = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -20,11 +41,39 @@ export default function UploadImage() {
 
     return new Promise<void>((resolve) => {
       reader.onload = () => {
-        setImagePreview(reader.result ? String(reader.result) : "");
+        const roughResult = String(reader.result);
+        setImagePreview(reader.result ? roughResult : "");
+
+        if (roughResult) {
+          const base64result = roughResult.split(",")[1];
+          setFileBase64(base64result);
+        }
+
         resolve();
       };
     });
   };
+
+  const submitImage = () => {
+    fetchData({
+      url: "/api/upload-image",
+      method: "POST",
+      headers: {
+        Authorization: token,
+      },
+      data: { file: null, cupStoreId: cupStoreId },
+    }).then((result: UserPointDataType) => {
+      if (result) {
+        setUserPointData(result);
+        setIsSuccess(true);
+        setTimeout(() => {
+          setIsSuccess(false);
+        }, 2000);
+      }
+    });
+  };
+
+  console.log(error);
 
   return (
     <UploadContainer>
@@ -45,7 +94,7 @@ export default function UploadImage() {
           />
         </UploadBtn>
       </form>
-      <SubmitBtn>제출하기</SubmitBtn>
+      <SubmitBtn onClick={() => submitImage()}>제출하기</SubmitBtn>
     </UploadContainer>
   );
 }
@@ -115,6 +164,7 @@ const ImageInput = styled.input<ImageInputProps>`
   height: 486px;
   display: none;
   position: absolute;
+  z-index: 90;
   border: 1px solid red;
   left: 50%;
   transform: translate(-50%, 0%);
