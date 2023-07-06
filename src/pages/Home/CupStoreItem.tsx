@@ -31,7 +31,7 @@ const CupStoreItem = ({ cupStore }: Props) => {
             className="return-btn"
             onClick={(e) => {
               e.preventDefault();
-              navigate(`/return/${cupStore.cupStoreId}`);
+              navigate(`/uploadImage/${cupStore.cupStoreId}`);
             }}
           >
             반납 인증

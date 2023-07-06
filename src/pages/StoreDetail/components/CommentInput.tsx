@@ -21,9 +21,7 @@ export default function CommentInput() {
   const token = localStorage.getItem('token');
 
   const inputRef = useRef<HTMLTextAreaElement | null>(null);
-  const setInputState = useSetRecoilState(refState);
   const [content, setContent] = useRecoilState(blogInputState);
-  setInputState(inputRef.current);
   const setCommentData = useSetRecoilState(commentDataState);
 
   const changeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {

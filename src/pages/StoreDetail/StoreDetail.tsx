@@ -24,7 +24,7 @@ export interface commentDataType {
 
 export default function StoreDetail() {
   const token = localStorage.getItem('token');
-  const [fetchData] = useAxios();
+  const [, , , fetchData] = useAxios();
   const [detail, setDetail] = useRecoilState(detailState);
   const setCommentData = useSetRecoilState(commentDataState);
 
@@ -98,6 +98,7 @@ const ThumbnailBox = styled.div`
 const ThumbnailImage = styled.img`
   width: 100%;
   border-radius: 8px;
+  object-fit: cover;
 `;
 
 const DetailHeader = styled.div`

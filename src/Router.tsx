@@ -9,6 +9,7 @@ import Return from './pages/Return/Return';
 import MyPage from './pages/MyPage/MyPage';
 import Donataion from './pages/Donataion/Donataion';
 import DonataionInputPage from './pages/Donataion/DonataionInputPage';
+import StoreDetail from './pages/StoreDetail/StoreDetail';
 
 export const router = createBrowserRouter([
   {
@@ -19,9 +20,8 @@ export const router = createBrowserRouter([
       { index: true, element: <></> },
       { path: '/home', element: <Home /> },
       { path: '/login', element: <Login /> },
-      { path: '/return/:id', element: <Return /> },
       { path: '/login/auth', element: <AuthCallback /> },
-      { path: '/detail/:id', element: <StoreDetail />},
+      { path: '/detail/:id', element: <StoreDetail /> },
       { path: '/uploadImage/:id', element: <UploadImage /> },
       { path: '/mypage', element: <MyPage /> },
       { path: '/donation', element: <Donataion /> },
