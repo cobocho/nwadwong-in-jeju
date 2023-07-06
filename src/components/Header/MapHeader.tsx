@@ -1,10 +1,13 @@
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { styled } from 'styled-components';
+import userState from '../../recoil/userState';
 
 const MapHeader = () => {
+  const user = useRecoilValue(userState);
   return (
     <Container>
       <div className="upper">
-        <h2>방문객님, 제주도에 컵 놔뒁</h2>
+        <h2>{user?.nickname ? user.nickname : '방문객'}님, 제주도에 컵 놔뒁</h2>
       </div>
       <div className="lower">
         <div className="cup-type">
