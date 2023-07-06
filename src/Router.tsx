@@ -6,6 +6,7 @@ import Login from './pages/Login/Login';
 import AuthCallback from './pages/Login/AuthCallback';
 import UploadImage from './pages/UploadImage/UploadImage';
 import StoreDetail from './pages/StoreDetail/StoreDetail';
+import Return from './pages/Return/Return';
 
 export const router = createBrowserRouter([
   {
@@ -16,10 +17,11 @@ export const router = createBrowserRouter([
       { index: true, element: <></> },
       { path: '/home', element: <Home /> },
       { path: '/login', element: <Login /> },
+      { path: '/return/:id', element: <Return /> },
       { path: '/login/auth', element: <AuthCallback /> },
-      { path: '/detail', element: <StoreDetail />},
+      { path: '/detail', element: <StoreDetail /> },
       { path: '/uploadImage', element: <UploadImage /> },
-    ]
+    ],
   },
 ]);
 
