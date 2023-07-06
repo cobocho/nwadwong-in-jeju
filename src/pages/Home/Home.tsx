@@ -211,7 +211,10 @@ export default function Home() {
           }}
         />
       )}
-      <CurrentPositonButton setCurrentLocation={setCurrentLocation} />
+      {/* <CurrentPositonButton
+        isUpPosition={selectedId === null ? false : true}
+        setCurrentLocation={setCurrentLocation}
+      /> */}
       {selectedId && (
         <CupStoreItem cupStore={data!.cupStores.find((item) => item.cupStoreId === selectedId)!} />
       )}

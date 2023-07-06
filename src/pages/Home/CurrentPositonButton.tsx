@@ -42,7 +42,7 @@ const CurrentPositonButton = ({ setCurrentLocation }: Props) => {
   );
 };
 
-const Container = styled.button`
+const Container = styled.div`
   position: absolute;
   right: 20px;
   bottom: 40px;
