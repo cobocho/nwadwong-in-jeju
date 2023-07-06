@@ -11,6 +11,8 @@ const CupStoreItem = ({ cupStore }: Props) => {
   const today = new Date();
   const hours = today.getHours();
 
+  if (!cupStore) return <></>;
+
   const [start, end] = cupStore.hours.split('~');
 
   const isOpen = +start < hours && +end > hours;
