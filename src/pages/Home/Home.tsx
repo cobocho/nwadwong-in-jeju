@@ -49,7 +49,7 @@ export default function Home() {
     lat: 37.5783209050878,
     lng: 126.894689433213,
   });
-  const [currentLocation, setCurrentLocation] = useState<Coord>({
+  const [, setCurrentLocation] = useState<Coord>({
     lat: 37.5783209050878,
     lng: 126.894689433213,
   });

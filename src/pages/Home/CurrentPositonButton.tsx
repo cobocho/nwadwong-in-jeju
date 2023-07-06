@@ -1,16 +1,20 @@
 import { styled } from 'styled-components';
 import { Coord } from './Home';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import useGeolocation from './useGeolocation';
 
 interface Props {
   setCurrentLocation: React.Dispatch<React.SetStateAction<Coord>>;
 }
 
 const CurrentPositonButton = ({ setCurrentLocation }: Props) => {
-  const [resetCurrentLocation, setResetCurrentLocation] = useState<Coord>({
-    lat: 37.5783209050878,
-    lng: 126.894689433213,
-  });
+  const location = useGeolocation();
+
+  useEffect(() => {
+    if (location.loaded) {
+      setCurrentLocation(location.coordinates!);
+    }
+  }, [location.loaded]);
 
   return (
     <Container>
