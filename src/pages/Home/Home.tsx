@@ -4,7 +4,6 @@ import CurrentPositonButton from './CurrentPositonButton';
 import { styled } from 'styled-components';
 import { getDistance } from './getDistance';
 import { useGetCupStoreByCoord } from '../../api/cupStoreApi';
-import { useQueryClient } from '@tanstack/react-query';
 import FindCurrentPositon from './FindCurrentPositon';
 import { CupStore } from '../../types/CupStore';
 import CupStoreItem from './CupStoreItem';
@@ -188,7 +187,15 @@ export default function Home() {
     <Container>
       <div
         id="map"
-        style={{ width: '100%', height: '100%' }}
+        style={{
+          position: 'fixed',
+          left: 0,
+          top: '131px',
+          width: '100vw',
+          maxWidth: '414px',
+          height: 'calc(100vh - 131px - 60px)',
+          margin: '0 auto',
+        }}
       />
       {visibleFindButton && (
         <FindCurrentPositon
