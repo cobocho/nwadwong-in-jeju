@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Container = styled.button`
   position: absolute;
-  top: 50px;
+  top: 24px;
   left: 50%;
 
   width: 140px;

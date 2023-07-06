@@ -25,12 +25,10 @@ const Container = styled.div`
   flex-direction: column;
 
   .upper {
-    display: flex;
-    align-items: center;
-    height: 94px;
     border-bottom: 1px solid #858899;
 
     h2 {
+      padding: 34px 0 24px 0;
       margin-left: 20px;
       font-weight: 700;
       font-size: 24px;

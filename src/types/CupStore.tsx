@@ -5,4 +5,5 @@ export interface CupStore {
   cupStoreId: number;
   lng: number;
   lat: number;
+  hours: string;
 }
