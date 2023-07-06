@@ -11,6 +11,18 @@ export default function DonataionInputPage() {
   const user = useRecoilValue(userState);
 
   async function postDonation() {
+    if (!user) return;
+
+    if (!ref.current?.value) {
+      alert('유효한 값을 입력해주세요!');
+      return;
+    }
+
+    if (+ref.current?.value > user.point) {
+      alert('보유한 포인트 이하의 값을 입력해주세요!');
+      return;
+    }
+
     await fetch('/api/donation', {
       method: 'POST',
       headers: {
@@ -22,7 +34,7 @@ export default function DonataionInputPage() {
         organizationId: 1,
       }),
     });
-    navigate('/home');
+    navigate('/donation');
   }
 
   return (
@@ -31,8 +43,8 @@ export default function DonataionInputPage() {
         <input
           ref={ref}
           type="number"
-          min={100}
-          max={1000000}
+          min={0}
+          max={user?.point}
           step={100}
           maxLength={10}
         />

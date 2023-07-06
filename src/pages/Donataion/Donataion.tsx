@@ -19,18 +19,18 @@ const Donataion = () => {
   }, []);
 
   return (
-    <Container accPrice={accPrice ? accPrice : 0}>
+    <Container accprice={accPrice ? accPrice : 0}>
       <h1>지금 바로, 수눌음</h1>
       <div className="cup">
         <div className="badge">제주도청 주관 기부 캠페인</div>
         <div className="title">제주 환경 보호함쪄</div>
         <div className="link">
-          <ShadowButton onClick={() => navigate('/donation-input')}>포인트 기부하기</ShadowButton>
+          <ShadowButton onClick={() => navigate('/donation/submit')}>포인트 기부하기</ShadowButton>
         </div>
         <p className="target-price">{`목표 포인트 ${TARGET_POINT.toLocaleString()}`}</p>
         <div className="liquor">
           <div className="point">
-            <p>{accPrice}</p>
+            <p>{accPrice?.toLocaleString()}</p>
             <strong>POINT</strong>
           </div>
         </div>
@@ -45,7 +45,7 @@ const Donataion = () => {
   );
 };
 
-const Container = styled.div<{ accPrice: number }>`
+const Container = styled.div<{ accprice: number }>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -116,7 +116,7 @@ const Container = styled.div<{ accPrice: number }>`
 
       .point {
         position: absolute;
-        left: 140px;
+        left: 135px;
         bottom: 220px;
         font-size: 20px;
         font-weight: 700;
@@ -154,7 +154,7 @@ const Container = styled.div<{ accPrice: number }>`
       height: 150px;
     }
     100% {
-      height: calc(140px + ((220px / 100) * ${(props) => props.accPrice / TARGET_POINT}));
+      height: calc(140px + (220px / 1 * ${(props) => props.accprice / TARGET_POINT}));
     }
   }
 
@@ -165,7 +165,7 @@ const Container = styled.div<{ accPrice: number }>`
     }
     100% {
       opacity: 1;
-      bottom: calc(145px + ((220px / 100) * ${(props) => props.accPrice / TARGET_POINT}));
+      bottom: calc(145px + (220px * ${(props) => props.accprice / TARGET_POINT}));
     }
   }
 

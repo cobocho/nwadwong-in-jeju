@@ -81,28 +81,13 @@ const NavContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 0.5s;
   }
 
   a.active {
-    /* transform: translateX(-15%); */
-    svg {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-
+    transform: scale(1.4);
     path {
       fill: #b4f3a8;
-    }
-
-    &::before {
-      display: block;
-      content: '';
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      background-color: #000;
     }
   }
 `;

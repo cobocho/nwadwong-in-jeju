@@ -26,7 +26,7 @@ export const router = createBrowserRouter([
       { path: '/uploadImage', element: <UploadImage /> },
       { path: '/mypage', element: <MyPage /> },
       { path: '/donation', element: <Donataion /> },
-      { path: '/donation-input', element: <DonataionInputPage /> },
+      { path: '/donation/submit', element: <DonataionInputPage /> },
     ],
   },
 ]);
