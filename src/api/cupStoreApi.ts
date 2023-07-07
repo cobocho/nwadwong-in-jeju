@@ -4,7 +4,9 @@ import { Coord } from '../pages/Home/Home';
 
 export const getCupStoreByCoord = async (coord: Coord, distance: number) => {
   const response = await (
-    await fetch(`/api/map/search?lat=${coord.lat}&lng=${coord.lng}&searchBoundary=${distance}`)
+    await fetch(
+      `https://goormtone6th.com/map/search?lat=${coord.lat}&lng=${coord.lng}&searchBoundary=${distance}`
+    )
   ).json();
   return response;
 };

@@ -56,7 +56,7 @@ export default function UploadImage() {
 
   const submitImage = () => {
     fetchData({
-      url: '/api/upload-image',
+      url: 'https://goormtone6th.com/upload-image',
       method: 'POST',
       headers: {
         Authorization: token,

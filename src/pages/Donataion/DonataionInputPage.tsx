@@ -23,7 +23,7 @@ export default function DonataionInputPage() {
       return;
     }
 
-    await fetch('/api/donation', {
+    await fetch('https://goormtone6th.com/donation', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

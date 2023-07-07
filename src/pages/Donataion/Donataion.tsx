@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import { styled } from "styled-components";
-import ShadowButton from "../../components/Button/ShadowButton";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { styled } from 'styled-components';
+import ShadowButton from '../../components/Button/ShadowButton';
+import { useNavigate } from 'react-router-dom';
 
 const TARGET_POINT = 1000000;
 
@@ -11,7 +11,7 @@ const Donataion = () => {
 
   async function getAcc() {
     const result = await (
-      await fetch("/api/organization?organizationId=1")
+      await fetch('https://goormtone6th.com/organization?organizationId=1')
     ).json();
     setAccPrice(result.accumulatePoint);
   }
@@ -26,9 +26,7 @@ const Donataion = () => {
         <div className="badge">제주도청 주관 기부 캠페인</div>
         <div className="title">제주 환경 보호함쪄</div>
         <div className="link">
-          <ShadowButton onClick={() => navigate("/donation/submit")}>
-            포인트 기부하기
-          </ShadowButton>
+          <ShadowButton onClick={() => navigate('/donation/submit')}>포인트 기부하기</ShadowButton>
         </div>
         <p className="target-price">{`목표 포인트 ${TARGET_POINT.toLocaleString()}`}</p>
         <div className="liquor">
@@ -152,7 +150,7 @@ const Container = styled.div<{ accprice: number }>`
       top: 0;
       width: 100%;
       height: 100%;
-      background-image: url("/images/rank-cup.png");
+      background-image: url('/images/rank-cup.png');
       z-index: 99;
     }
   }
@@ -178,9 +176,7 @@ const Container = styled.div<{ accprice: number }>`
       height: 150px;
     }
     100% {
-      height: calc(
-        140px + (2200px * ${(props) => props.accprice / TARGET_POINT})
-      );
+      height: calc(140px + (2200px * ${(props) => props.accprice / TARGET_POINT}));
     }
   }
 
@@ -191,9 +187,7 @@ const Container = styled.div<{ accprice: number }>`
     }
     100% {
       opacity: 1;
-      bottom: calc(
-        145px + (2200px * ${(props) => props.accprice / TARGET_POINT})
-      );
+      bottom: calc(145px + (2200px * ${(props) => props.accprice / TARGET_POINT}));
     }
   }
 
