@@ -1,13 +1,13 @@
-import { useRecoilState, useRecoilValue } from "recoil";
-import { styled } from "styled-components";
-import userState from "../../recoil/userState";
+import { useRecoilValue } from 'recoil';
+import { styled } from 'styled-components';
+import userState from '../../recoil/userState';
 
 const MapHeader = () => {
   const user = useRecoilValue(userState);
   return (
     <Container>
       <div className="upper">
-        <p>{user?.nickname ? user.nickname : "방문객"}님,</p>
+        <p>{user?.nickname ? user.nickname : '방문객'}님,</p>
         <div className="second-line">
           <p>여기에</p>
           <CupImage src="/images/uploadImage/cup.svg"></CupImage>

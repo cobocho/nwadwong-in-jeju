@@ -1,6 +1,6 @@
-import { useRecoilValue } from "recoil";
-import { styled } from "styled-components";
-import userState from "../../recoil/userState";
+import { useRecoilValue } from 'recoil';
+import { styled } from 'styled-components';
+import userState from '../../recoil/userState';
 
 const MyPage = () => {
   const user = useRecoilValue(userState);
@@ -34,7 +34,10 @@ const MyPage = () => {
           <GainedPoint>
             <AlertBox>
               <div className="userProfileContainer">
-                <img src="/images/profile.png" className="profile" />
+                <img
+                  src="/images/profile.png"
+                  className="profile"
+                />
                 <p className="userName">
                   {user.nickname}님이
                   <br />
@@ -140,13 +143,6 @@ const AlertBox = styled.div`
     flex-direction: column;
     align-items: center;
   }
-`;
-
-const CupImage = styled.img``;
-
-const Text = styled.span`
-  font-size: 15px;
-  font-weight: 500;
 `;
 
 const SecondText = styled.span`

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import useGeolocation from './useGeolocation';
-import CurrentPositonButton from './CurrentPositonButton';
 import { styled } from 'styled-components';
 import { getDistance } from './getDistance';
 import { useGetCupStoreByCoord } from '../../api/cupStoreApi';

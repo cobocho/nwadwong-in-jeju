@@ -1,10 +1,10 @@
-import { ChangeEvent, useEffect, useState } from "react";
-import styled from "styled-components";
-import useAxios from "../../hooks/useAxios";
-import { useParams } from "react-router-dom";
-import { useSetRecoilState } from "recoil";
-import { userPointState } from "../../recoil/userPointState";
-import { uploadSuccessState } from "../../recoil/uploadSuccessState";
+import { ChangeEvent, useState } from 'react';
+import styled from 'styled-components';
+import useAxios from '../../hooks/useAxios';
+import { useParams } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
+import { userPointState } from '../../recoil/userPointState';
+import { uploadSuccessState } from '../../recoil/uploadSuccessState';
 
 interface ImageInputProps {
   src?: string;
@@ -24,11 +24,11 @@ export default function UploadImage() {
   const [, error, , fetchData] = useAxios();
   const setUserPointData = useSetRecoilState(userPointState);
   const setIsSuccess = useSetRecoilState(uploadSuccessState);
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem('token');
   const params = useParams();
   const cupStoreId = params.id;
 
-  const [fileBase64, setFileBase64] = useState("");
+  const [fileBase64, setFileBase64] = useState('');
 
   const onUpload = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -42,10 +42,10 @@ export default function UploadImage() {
     return new Promise<void>((resolve) => {
       reader.onload = () => {
         const roughResult = String(reader.result);
-        setImagePreview(reader.result ? roughResult : "");
+        setImagePreview(reader.result ? roughResult : '');
 
         if (roughResult) {
-          const base64result = roughResult.split(",")[1];
+          const base64result = roughResult.split(',')[1];
           setFileBase64(base64result);
         }
 
@@ -56,8 +56,8 @@ export default function UploadImage() {
 
   const submitImage = () => {
     fetchData({
-      url: "/api/upload-image",
-      method: "POST",
+      url: '/api/upload-image',
+      method: 'POST',
       headers: {
         Authorization: token,
       },
@@ -154,7 +154,7 @@ const ImagePreview = styled.img<ImageInputProps>`
   justify-content: center;
   align-items: center;
   display: ${(props) =>
-    !props.imagePreview || props.imagePreview === "#d9d9d9" ? "block" : "none"};
+    !props.imagePreview || props.imagePreview === '#d9d9d9' ? 'block' : 'none'};
 `;
 
 const AddIcon = styled.img`

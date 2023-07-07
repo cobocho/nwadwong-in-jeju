@@ -1,11 +1,11 @@
-import styled from "styled-components";
-import useAxios from "../../hooks/useAxios";
-import { useEffect } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
-import { commentDataState } from "../../recoil/commentState";
-import { detailState } from "../../recoil/detailState";
-import Comments from "./Comments";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import styled from 'styled-components';
+import useAxios from '../../hooks/useAxios';
+import { useEffect } from 'react';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { commentDataState } from '../../recoil/commentState';
+import { detailState } from '../../recoil/detailState';
+import Comments from './Comments';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export interface detailDataType {
   imageUrl: string;
@@ -24,7 +24,7 @@ export interface commentDataType {
 }
 
 export default function StoreDetail() {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem('token');
   const [, , , fetchData] = useAxios();
   const navigate = useNavigate();
   const [detail, setDetail] = useRecoilState(detailState);
@@ -35,18 +35,15 @@ export default function StoreDetail() {
   function isOpenNow(hours: string) {
     const now = new Date();
     const currentHour = now.getHours();
-    if (
-      Number(hours.split("~")[0]) < currentHour &&
-      currentHour < Number(hours.split("~")[1])
-    ) {
-      return "운영중";
+    if (Number(hours.split('~')[0]) < currentHour && currentHour < Number(hours.split('~')[1])) {
+      return '운영중';
     } else {
-      return "운영종료";
+      return '운영종료';
     }
   }
 
   function displayTime(hours: string) {
-    return hours.split("~")[0] + ":00" + " - " + hours.split("~")[1] + ":00";
+    return hours.split('~')[0] + ':00' + ' - ' + hours.split('~')[1] + ':00';
   }
 
   useEffect(() => {
@@ -54,7 +51,7 @@ export default function StoreDetail() {
       url: `/api/detail?cupStoreId=${cupStoreId}`,
       headers: {
         Authorization: token,
-        "Content-Type": `application/json`,
+        'Content-Type': `application/json`,
       },
     }).then((result: detailDataType) => {
       if (result) {
@@ -90,9 +87,7 @@ export default function StoreDetail() {
         </Rating> */}
       </DetailHeader>
       <Comments />
-      <SubmitBtn onClick={() => navigate(`/uploadImage/${cupStoreId}`)}>
-        반납 인증
-      </SubmitBtn>
+      <SubmitBtn onClick={() => navigate(`/uploadImage/${cupStoreId}`)}>반납 인증</SubmitBtn>
     </>
   );
 }
