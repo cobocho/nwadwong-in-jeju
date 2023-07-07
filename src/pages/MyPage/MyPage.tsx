@@ -67,20 +67,52 @@ const Container = styled.div`
     }
   }
 
-  h1 {
-    font-size: 24px;
-    font-weight: 600;
-  }
-
   .user {
     display: flex;
-    flex-direction: column;
     align-items: center;
     width: 100%;
     border-radius: 8px;
 
     .profile {
       width: 100px;
+    }
+
+    .user-name {
+      strong {
+        font-size: 28px;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .point {
+    position: relative;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+
+    .user-point {
+      position: absolute;
+      left: 50%;
+      bottom: 20%;
+      font-size: 12px;
+      color: #888888;
+      transform: translateX(-50%);
+    }
+    .user-acc {
+      position: absolute;
+      left: 50%;
+      bottom: 30%;
+      font-size: 20px;
+      transform: translateX(-50%);
+      font-weight: 600;
+    }
+    .cup {
+      position: absolute;
+      left: 50%;
+      bottom: 40%;
+      font-size: 20px;
+      transform: translateX(-50%);
     }
   }
 `;

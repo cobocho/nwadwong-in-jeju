@@ -113,9 +113,10 @@ const UploadBtn = styled.div<ImageInputProps>`
   justify-content: center;
   align-items: center;
   background-image: url(${(props) => props.imagePreview});
-  object-fit: cover;
   background-color: ${(props) => props.imagePreview};
-
+  object-fit: cover;
+  background-size: cover;
+  background-position: center;
   &:hover {
     cursor: pointer;
   }
@@ -137,6 +138,7 @@ const UploadLabel = styled.label`
 const SubmitBtn = styled.button`
   width: 166px;
   height: 50px;
+  margin-bottom: 20px;
   border: none;
   border-radius: 8px;
   background-color: #b4f3a8;
