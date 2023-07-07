@@ -20,14 +20,16 @@ const Header = styled.div`
   height: 113px;
   display: flex;
   justify-content: center;
+  align-items: center;
   position: relative;
+  padding-top: 49px;
   margin-bottom: 17px;
 `;
 
 const BackIcon = styled(FaChevronLeft)`
   width: 15px;
   height: 15px;
-  top: 70px;
+  top: 72px;
   left: 12px;
   position: absolute;
 
@@ -40,7 +42,6 @@ const Title = styled.p`
   font-size: 18px;
   line-height: 27px;
   font-weight: 700;
-  margin-top: 64px;
 `;
 
 const TITLE_DATA = [

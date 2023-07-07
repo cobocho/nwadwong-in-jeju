@@ -17,7 +17,7 @@ export default function Comments() {
 }
 
 const CommentNumber = styled.p`
-  margin-top: 20px;
+  margin-top: 30px;
   margin-bottom: 10px;
   font-size: 1.25rem;
   font-weight: 600;

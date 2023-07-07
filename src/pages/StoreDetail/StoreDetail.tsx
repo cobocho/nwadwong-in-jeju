@@ -167,11 +167,12 @@ const SubmitBtn = styled.button`
   border: none;
   border-radius: 8px;
   background-color: #b4f3a8;
-  box-shadow: 0px 0px 13px -4px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 4px 13px -4px rgba(0, 0, 0, 0.5);
   position: fixed;
   top: 620px;
   left: 50%;
   transform: translate(-50%, 0%);
+  font-size: 16px;
 
   &:hover {
     cursor: pointer;

@@ -1,22 +1,27 @@
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { styled } from 'styled-components';
-import userState from '../../recoil/userState';
+import { useRecoilState, useRecoilValue } from "recoil";
+import { styled } from "styled-components";
+import userState from "../../recoil/userState";
 
 const MapHeader = () => {
   const user = useRecoilValue(userState);
   return (
     <Container>
       <div className="upper">
-        <h2>{user?.nickname ? user.nickname : '방문객'}님, 제주도에 컵 놔뒁</h2>
+        <p>{user?.nickname ? user.nickname : "방문객"}님,</p>
+        <div className="second-line">
+          <p>여기에</p>
+          <CupImage src="/images/uploadImage/cup.svg"></CupImage>
+          <p>놔뒁</p>
+        </div>
       </div>
       <div className="lower">
         <div className="cup-type">
           <div className="circle reusable" />
-          <p>다회용컵</p>
+          <p className="cupCategory">다회용컵</p>
         </div>
         <div className="cup-type">
           <div className="circle disposable" />
-          <p>일회용컵</p>
+          <p className="cupCategory">일회용컵</p>
         </div>
       </div>
     </Container>
@@ -24,29 +29,42 @@ const MapHeader = () => {
 };
 
 const Container = styled.div`
+  padding-top: 12px;
   display: flex;
   flex-direction: column;
 
   .upper {
     border-bottom: 1px solid #858899;
+    padding: 34px 0 24px 20px;
 
-    h2 {
-      padding: 34px 0 24px 0;
-      margin-left: 20px;
+    .second-line {
+      display: flex;
+    }
+
+    p {
       font-weight: 700;
       font-size: 24px;
+      line-height: 36px;
+      :last-child {
+        margin-left: 0px;
+      }
     }
   }
   .lower {
     display: flex;
     align-items: center;
     height: 48px;
-    gap: 20px;
 
     .cup-type {
       margin-left: 20px;
       display: flex;
       gap: 4px;
+      font-size: 16px;
+
+      .cupCategory {
+        font-size: 16px;
+        color: #2b2d36;
+      }
 
       .circle {
         width: 14px;
@@ -54,14 +72,22 @@ const Container = styled.div`
         border-radius: 50%;
 
         &.reusable {
-          background-color: #36bf9f;
+          background-color: #b4f3a8;
+          margin-right: 4px;
         }
         &.disposable {
-          background-color: #08785e;
+          background-color: #96b490;
+          margin-right: 4px;
         }
       }
     }
   }
+`;
+
+const CupImage = styled.img`
+  height: 28px;
+  margin: 0 10px;
+  align-self: center;
 `;
 
 export default MapHeader;

@@ -3,11 +3,7 @@ import { BiSolidUser } from "react-icons/bi";
 import { useRef } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import useAxios from "../../../hooks/useAxios";
-import {
-  blogInputState,
-  commentDataState,
-  refState,
-} from "../../../recoil/commentState";
+import { blogInputState, commentDataState } from "../../../recoil/commentState";
 import { useParams } from "react-router-dom";
 
 interface newCommenttype {
@@ -82,18 +78,25 @@ const UserAvatar = styled(BiSolidUser)`
   width: 25px;
   height: 25px;
   padding: 3px;
-  border: 1px solid gray;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 0px 0px 5px -2px rgba(0, 0, 0, 0.3);
 `;
 
 const CommentInputPlace = styled.textarea`
   width: 75%;
   padding-left: 10px;
   padding-top: 10px;
+  border: none;
+  outline: none;
+  resize: none;
+  font-family: inherit;
+  background-color: transparent;
+  color: #bbbbbb;
 `;
+
 const SubmitButton = styled.button`
   border: none;
   background-color: transparent;

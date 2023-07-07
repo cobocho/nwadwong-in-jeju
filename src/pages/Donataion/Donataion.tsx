@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import { styled } from 'styled-components';
-import ShadowButton from '../../components/Button/ShadowButton';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { styled } from "styled-components";
+import ShadowButton from "../../components/Button/ShadowButton";
+import { useNavigate } from "react-router-dom";
 
 const TARGET_POINT = 1000000;
 
@@ -10,7 +10,9 @@ const Donataion = () => {
   const navigate = useNavigate();
 
   async function getAcc() {
-    const result = await (await fetch('/api/organization?organizationId=1')).json();
+    const result = await (
+      await fetch("/api/organization?organizationId=1")
+    ).json();
     setAccPrice(result.accumulatePoint);
   }
 
@@ -20,12 +22,13 @@ const Donataion = () => {
 
   return (
     <Container accprice={accPrice ? accPrice : 0}>
-      <h1>지금 바로, 수눌음</h1>
       <div className="cup">
         <div className="badge">제주도청 주관 기부 캠페인</div>
         <div className="title">제주 환경 보호함쪄</div>
         <div className="link">
-          <ShadowButton onClick={() => navigate('/donation/submit')}>포인트 기부하기</ShadowButton>
+          <ShadowButton onClick={() => navigate("/donation/submit")}>
+            포인트 기부하기
+          </ShadowButton>
         </div>
         <p className="target-price">{`목표 포인트 ${TARGET_POINT.toLocaleString()}`}</p>
         <div className="liquor">
@@ -41,6 +44,10 @@ const Donataion = () => {
         />
         <div className="rank-cup"></div>
       </div>
+      <div className="space">
+        <div className="background" />
+        <div className="background" />
+      </div>
     </Container>
   );
 };
@@ -49,7 +56,7 @@ const Container = styled.div<{ accprice: number }>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 40px;
+  /* padding-top: 40px; */
 
   h1 {
     width: 100%;
@@ -83,6 +90,7 @@ const Container = styled.div<{ accprice: number }>`
       font-weight: 700;
       font-size: 32px;
       z-index: 999;
+      font-family: Jeju Hallasan;
     }
 
     .target-price {
@@ -144,8 +152,24 @@ const Container = styled.div<{ accprice: number }>`
       top: 0;
       width: 100%;
       height: 100%;
-      background-image: url('/images/rank-cup.png');
+      background-image: url("/images/rank-cup.png");
       z-index: 99;
+    }
+  }
+
+  .space {
+    width: 100%;
+    height: 581px;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    padding: 0 20px;
+
+    .background {
+      width: 15%;
+      height: 100%;
+      background-color: #f7f7fa;
+      border-radius: 8px;
     }
   }
 
@@ -154,7 +178,9 @@ const Container = styled.div<{ accprice: number }>`
       height: 150px;
     }
     100% {
-      height: calc(140px + (220px / 1 * ${(props) => props.accprice / TARGET_POINT}));
+      height: calc(
+        140px + (2200px * ${(props) => props.accprice / TARGET_POINT})
+      );
     }
   }
 
@@ -165,7 +191,9 @@ const Container = styled.div<{ accprice: number }>`
     }
     100% {
       opacity: 1;
-      bottom: calc(145px + (220px * ${(props) => props.accprice / TARGET_POINT}));
+      bottom: calc(
+        145px + (2200px * ${(props) => props.accprice / TARGET_POINT})
+      );
     }
   }
 

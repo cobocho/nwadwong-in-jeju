@@ -10,7 +10,7 @@ const GlobalStyles = createGlobalStyle`
 
 
     body {
-        background-color: white;
+        background-color: #f0f0f5;
         font-family: 'Pretendard', sans-serif
     }
 

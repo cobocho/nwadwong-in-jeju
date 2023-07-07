@@ -1,5 +1,5 @@
-import { ReactNode } from 'react';
-import styled from 'styled-components';
+import { ReactNode } from "react";
+import styled from "styled-components";
 
 export default function ScreenContainer({ children }: { children: ReactNode }) {
   return <ContainerBox>{children}</ContainerBox>;
@@ -15,4 +15,5 @@ const ContainerBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-color: white;
 `;

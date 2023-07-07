@@ -2,14 +2,15 @@ import styled from "styled-components";
 import MapHeader from "./MapHeader";
 import { useLocation } from "react-router-dom";
 import SmallHeader from "./SmallHeader";
+import BigHeader from "./BigHeader";
 
 export default function Header() {
   const { pathname } = useLocation();
 
-  if (
-    ["/login", "/mypage", "/donation", "/donation-input"].includes(pathname)
-  ) {
+  if (["/login"].includes(pathname)) {
     return <></>;
+  } else if (["/mypage", "/donation"].includes(pathname)) {
+    return <BigHeader />;
   } else if (
     pathname.includes("/detail") ||
     pathname.includes("/uploadImage") ||
