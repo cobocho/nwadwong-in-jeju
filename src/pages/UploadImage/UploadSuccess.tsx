@@ -1,12 +1,16 @@
 import styled from "styled-components";
+import { userPointState } from "../../recoil/userPointState";
+import { useRecoilValue } from "recoil";
 
 export default function UploadSuccess() {
+  const userPointData = useRecoilValue(userPointState);
+
   return (
     <SuccessModal>
       <GainedPoint>
         <AlertBox>
           <CupImage src="/images/uploadImage/cup.svg" />
-          <PointText>24 Point</PointText>
+          <PointText>{userPointData.gainPoint} Point</PointText>
           <AlertText>획득하셨습니다.</AlertText>
         </AlertBox>
         <EllipseImg src="/images/uploadImage/successAlert.png" />
