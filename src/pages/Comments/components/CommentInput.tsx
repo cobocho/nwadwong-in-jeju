@@ -34,7 +34,7 @@ export default function CommentInput() {
   const postHandler = () => {
     if (content) {
       fetchData({
-        url: 'https://goormtone6th.com',
+        url: 'https://goormtone6th.com/comment',
         method: 'POST',
         headers: {
           authorization: token,
@@ -60,7 +60,7 @@ export default function CommentInput() {
 
   const patchHandler = () => {
     fetchData({
-      url: 'https://goormtone6th.com',
+      url: 'https://goormtone6th.com/comment',
       method: 'PATCH',
       headers: {
         authorization: token,
