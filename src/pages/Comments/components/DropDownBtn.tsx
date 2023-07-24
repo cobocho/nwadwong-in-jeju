@@ -4,12 +4,7 @@ import useAxios from '../../../hooks/useAxios';
 import { commentDataType } from '../../StoreDetail/StoreDetail';
 import { useState } from 'react';
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import {
-  commentDataState,
-  currentCommentIdState,
-  inputState,
-  isEditState,
-} from '../../../recoil/commentState';
+import { commentDataState, currentCommentIdState, inputState, isEditState } from '../../../recoil/commentState';
 
 interface DropDownBtnProps {
   commentObj: commentDataType;
@@ -31,15 +26,13 @@ export default function DropDownBtn({ commentObj }: DropDownBtnProps) {
     setCurrentCommentId(dataValue);
 
     fetchData({
-      url: `/api/comment?commentId=${commentObj.commentId}`,
+      url: `https://goormtone6th.com?commentId=${commentObj.commentId}`,
       method: 'DELETE',
       headers: {
         authorization: token,
       },
     }).then((result: { deletedCommentId: number }) => {
-      const index = commentData.findIndex(
-        (obj) => obj.commentId === result.deletedCommentId
-      );
+      const index = commentData.findIndex((obj) => obj.commentId === result.deletedCommentId);
       if (result) {
         setCommentData((prevCommentData) => {
           const updatedCommentData = [...prevCommentData];
