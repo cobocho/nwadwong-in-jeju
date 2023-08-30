@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { CupStore } from '../types/CupStore';
 import { Coord } from '../pages/Home/Home';
-import { detailDataType } from '../pages/StoreDetail/StoreDetail';
+import { IDetailData } from '../pages/StoreDetail/StoreDetail';
 
 export const getCupStoreDetailByID = async (id: string) => {
   const response = await (await fetch(`https://goormtone6th.com/detail?cupStoreId=${id}`)).json();
@@ -23,5 +23,5 @@ export const useGetCupStoreByCoord = (coord: Coord, distance: number, options?: 
 };
 
 export const useGetCupStoreDetailById = (id: string, options?: object) => {
-  return useQuery<detailDataType>(['cupStoreDetail', id], () => getCupStoreDetailByID(id), options);
+  return useQuery<IDetailData>(['cupStoreDetail', id], () => getCupStoreDetailByID(id), options);
 };

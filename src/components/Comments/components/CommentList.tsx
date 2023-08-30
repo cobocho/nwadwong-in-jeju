@@ -2,12 +2,10 @@ import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { commentDataState } from '../../../recoil/commentState';
 import DropDownBtn from './DropDownBtn';
-import userState from '../../../recoil/userState';
 import { displayCreatedAt } from './DisplayCreatedAt';
 
 export default function CommentList() {
   const commentData = useRecoilValue(commentDataState);
-  const user = useRecoilValue(userState);
 
   return (
     <div>
@@ -18,9 +16,7 @@ export default function CommentList() {
               <CommentLeft>
                 <CommentUser>{item.commentNickname}</CommentUser>
                 <DivideDot>·</DivideDot>
-                <CreatedAt>
-                  {item.createdAt && displayCreatedAt(item.createdAt)}
-                </CreatedAt>
+                <CreatedAt>{item.createdAt && displayCreatedAt(item.createdAt)}</CreatedAt>
               </CommentLeft>
               <CommentRight>
                 <DropDownBtn commentObj={item} />
