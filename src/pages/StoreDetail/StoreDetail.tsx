@@ -63,7 +63,7 @@ export default function StoreDetail() {
 	useEffect(() => {
 		fetchData(
 			{
-				url: `/api/detail?cupStoreId=${cupStoreId}`,
+				url: `https://goormtone6th.com/detail?cupStoreId=${cupStoreId}`,
 			},
 			handleResponse
 		);
